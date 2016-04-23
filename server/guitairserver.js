@@ -54,7 +54,7 @@ io.sockets.on('connection', function (client) {
     });
 	client.on('disconnect', function (client) {
 		for(var key in pagelist){
-			if (pagelis.key == client){
+			if (pagelist.key == client){
 				delete pagelist.key;
 			}
 		}
