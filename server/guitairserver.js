@@ -38,7 +38,7 @@ io.sockets.on('connection', function (client) {
 					console.log('requesting page with code ' + message.code);
 					client.on('message', createOnPhoneMessageListener(pagelist[message.code]));
 				} else {
-					console.log("requested unregistred page.");
+					console.log("requested unregistred page: " + message.code);
 					client.disconnect();
 					// TODO! client.json.send({status: ''});
 				}
@@ -52,4 +52,11 @@ io.sockets.on('connection', function (client) {
             client.disconnect();
         }
     });
+	client.on('disconnect', function (client) {
+		for(var key in pagelist){
+			if (pagelis.key == client){
+				delete pagelist.key;
+			}
+		}
+	});
 });
