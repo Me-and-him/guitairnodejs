@@ -12,11 +12,21 @@ var http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io').listen(server, options);
 server.listen(PORT);
+var swig = require('swig');
  
 app.use('/static', express.static(__dirname + '/static'));
- 
+
+function getuniqcode() {
+	return '1234';
+}
+
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/index.html');
+	page_code = getuniqcode();
+	res.send(swig.renderFile(
+		__dirname + '/index.html',
+		{code: page_code}
+	));
+    //res.sendfile(__dirname + '/index.html');
 });
 
 function createOnPhoneMessageListener(client) {
