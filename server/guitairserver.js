@@ -55,6 +55,7 @@ io.sockets.on('connection', function (client) {
 	client.on('disconnect', function (client) {
 		for(var key in pagelist){
 			if (pagelist.key == client){
+				console.log('webpage with code ' + message.code + ' registered');
 				delete pagelist.key;
 			}
 		}
