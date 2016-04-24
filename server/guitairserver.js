@@ -69,6 +69,7 @@ function createOnPhoneMessageListener(client) {
 	return onPhoneMessage;
 }
 
+
 //ïîäïèñûâàåìñÿ íà ñîáûòèå ñîåäèíåíèÿ íîâîãî êëèåíòà
 io.sockets.on('connection', function (client) {
     //ïîäïèñûâàåìñÿ íà ñîáûòèå message îò êëèåíòà
