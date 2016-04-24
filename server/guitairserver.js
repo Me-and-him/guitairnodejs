@@ -15,6 +15,7 @@ server.listen(PORT);
 var swig = require('swig');
  
 app.use('/static', express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/public'));
 
 function getuniqcode() {
 	return '1234';
