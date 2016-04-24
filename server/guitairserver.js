@@ -12,17 +12,38 @@ var http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io').listen(server, options);
 server.listen(PORT);
+var swig = require('swig');
+
+var DEBUG_CODE_1 = '1337'
+var DEBUG_CODE_2 = '1488'
+pagelist[DEBUG_CODE_1] = undefined
+pagelist[DEBUG_CODE_1] = undefined
  
 app.use('/static', express.static(__dirname + '/static'));
- 
+app.use(express.static(__dirname + '/public'));
+
+function getuniqcode() {
+	return '1234';
+}
+
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/index.html');
+	page_code = getuniqcode();
+	res.send(swig.renderFile(
+		__dirname + '/public/index.html',
+		{code: page_code}
+	));
+    //res.sendfile(__dirname + '/index.html');
 });
 
 function createOnPhoneMessageListener(client) {
 	function onPhoneMessage(message) {
-		console.log('message ' + message.time + ' ' + message.move + ' was sent');
-		client.json.send(message);
+		try {
+			console.log('message ' + message.time + ' ' + message.move + ' was sent');
+			client.json.send(message);
+		} catch (e) {
+            console.log(e);
+            //client.disconnect();
+        }
 	}
 	return onPhoneMessage;
 }
