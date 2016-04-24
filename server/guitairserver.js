@@ -53,7 +53,7 @@ io.sockets.on('connection', function (client) {
     //подписываемся на событие message от клиента
     client.on('message', function (message) {
         try {
-			console.log('some client connected');
+			//console.log('some client connected');
             if (message.type == 'phone') {
 				if (message.code in pagelist) {
 					console.log('requesting page with code ' + message.code);
