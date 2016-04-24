@@ -21,6 +21,7 @@ pagelist[DEBUG_CODE_2] = undefined
  
 app.use('/static', express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/public'));
+app.disable('etag');
 
 function getuniqcode() {
 	code = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
