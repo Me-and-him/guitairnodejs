@@ -44,7 +44,7 @@ function createOnPhoneMessageListener(client) {
 				case 2: mMovement = 'DOWN'; break;
 				case 3: mMovement = 'START'; break;
 				case 4: mMovement = 'STOP'; break;
-				case 5: mMovement = 'PAUSE'; break;
+				case 5: mMovement = 'PASS'; break;
 			}
 			client.json.send({time:message.time, movement:mMovement});
 		} catch (e) {
