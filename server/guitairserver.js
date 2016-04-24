@@ -14,7 +14,7 @@ var io = require('socket.io').listen(server, options);
 server.listen(PORT);
 var swig = require('swig');
 
-var DEBUG_CODE_1 = '1337'
+var DEBUG_CODE_1 = '1234'
 var DEBUG_CODE_2 = '1488'
 pagelist[DEBUG_CODE_1] = undefined
 pagelist[DEBUG_CODE_2] = undefined
