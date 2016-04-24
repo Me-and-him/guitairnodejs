@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
 	page_code = getuniqcode();
 	res.send(swig.renderFile(
 		__dirname + '/public/index.html',
-		{code: page_code}
+		{locals: {code: page_code}}
 	));
     //res.sendfile(__dirname + '/index.html');
 });
