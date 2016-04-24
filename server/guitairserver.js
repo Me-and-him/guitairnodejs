@@ -38,8 +38,15 @@ app.get('/', function (req, res) {
 function createOnPhoneMessageListener(client) {
 	function onPhoneMessage(message) {
 		try {
-			console.log('message ' + message.time + ' ' + message.move + ' was sent');
-			client.json.send(message);
+			console.log('message ' + message.time.toString() + ' ' + message.move.toString() + ' was sent to' + client);
+			switch (message.move){
+				case 1: mMovement = 'UP'; break;
+				case 2: mMovement = 'DOWN'; break;
+				case 3: mMovement = 'START'; break;
+				case 4: mMovement = 'STOP'; break;
+				case 5: mMovement = 'PAUSE'; break;
+			}
+			client.json.send({time:message.time, movement:mMovement});
 		} catch (e) {
             console.log(e);
             //client.disconnect();
@@ -65,7 +72,7 @@ io.sockets.on('connection', function (client) {
 				}
 			} else if (message.type == 'webpage') {
 				// Add this page to list...
-				console.log('webpage with code ' + message.code + ' registered');
+				console.log('webpage with code ' + message.code + ' registered as' + client);
 				pagelist[message.code] = client;
 			}
         } catch (e) {
