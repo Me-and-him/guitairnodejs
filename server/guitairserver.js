@@ -23,7 +23,15 @@ app.use('/static', express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/public'));
 
 function getuniqcode() {
-	return '1234';
+	code = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
+	code = ("0000" + code).slice(-4);
+	
+	while (code in pagelist){
+		code = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
+		code = ("0000" + code).slice(-4);
+	}
+	console.log('generated code: ' + code);
+	return code;
 }
 
 app.get('/', function (req, res) {
