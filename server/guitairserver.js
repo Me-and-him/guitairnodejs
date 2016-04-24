@@ -39,9 +39,10 @@ app.get('/', function (req, res) {
 	console.log('proceeding pagerequest...');
 	var page_code = getuniqcode();
 	
-	res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-    res.header("Pragma", "no-cache");
-    res.header("Expires", 0);
+	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+	res.header('Expires', '-1');
+	res.header('Pragma', 'no-cache');
+	next();
 	
 	res.send(swig.renderFile(
 		__dirname + '/public/index.html',
