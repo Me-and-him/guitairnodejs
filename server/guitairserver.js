@@ -13,7 +13,7 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server, options);
 server.listen(PORT);
 var swig = require('swig');
-
+var jumanji = require('jumanji');
 var DEBUG_CODE_1 = '1234'
 var DEBUG_CODE_2 = '1488'
 pagelist[DEBUG_CODE_1] = undefined
@@ -21,7 +21,7 @@ pagelist[DEBUG_CODE_2] = undefined
  
 app.use('/static', express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/public'));
-//app.disable('etag');
+app.use(jumanji);
 
 function getuniqcode() {
 	code = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
