@@ -35,6 +35,7 @@ function getuniqcode() {
 }
 
 app.get('/', function (req, res) {
+	console.log('proceeding pagerequest...');
 	var page_code = getuniqcode();
 	res.send(swig.renderFile(
 		__dirname + '/public/index.html',
