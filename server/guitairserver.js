@@ -46,7 +46,6 @@ app.get('/', function (req, res) {
 	
 	var tmp = swig.compileFile(__dirname + '/public/index.html');
 	res.send(tmp.render({code: page_code}));
-	));
     //res.sendfile(__dirname + '/index.html');
 });
 
