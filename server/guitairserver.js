@@ -21,7 +21,7 @@ pagelist[DEBUG_CODE_2] = undefined
  
 app.use('/static', express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/public'));
-app.disable('etag');
+//app.disable('etag');
 
 function getuniqcode() {
 	code = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
@@ -38,6 +38,11 @@ function getuniqcode() {
 app.get('/', function (req, res) {
 	console.log('proceeding pagerequest...');
 	var page_code = getuniqcode();
+	
+	res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", 0);
+	
 	res.send(swig.renderFile(
 		__dirname + '/public/index.html',
 		{code: page_code}
