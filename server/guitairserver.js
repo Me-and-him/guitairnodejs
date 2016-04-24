@@ -17,7 +17,7 @@ var swig = require('swig');
 var DEBUG_CODE_1 = '1337'
 var DEBUG_CODE_2 = '1488'
 pagelist[DEBUG_CODE_1] = undefined
-pagelist[DEBUG_CODE_1] = undefined
+pagelist[DEBUG_CODE_2] = undefined
  
 app.use('/static', express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/public'));
@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 function createOnPhoneMessageListener(client) {
 	function onPhoneMessage(message) {
 		try {
-			console.log('message ' + message.time.toString() + ' ' + message.move.toString() + ' was sent to' + client);
+			console.log('message ' + message.time.toString() + ' ' + message.move.toString() + ' was sent to ' + client);
 			switch (message.move){
 				case 1: mMovement = 'UP'; break;
 				case 2: mMovement = 'DOWN'; break;
