@@ -39,14 +39,13 @@ app.get('/', function (req, res) {
 	console.log('proceeding pagerequest...');
 	var page_code = getuniqcode();
 	
-	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-	res.header('Expires', '-1');
-	res.header('Pragma', 'no-cache');
-	next();
+	//res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+	//res.header('Expires', '-1');
+	//res.header('Pragma', 'no-cache');
+	//next();
 	
-	res.send(swig.renderFile(
-		__dirname + '/public/index.html',
-		{code: page_code}
+	var tmp = swig.compileFile(__dirname + '/public/index.html');
+	res.send(tmp.render({code: page_code}));
 	));
     //res.sendfile(__dirname + '/index.html');
 });
@@ -71,9 +70,9 @@ function createOnPhoneMessageListener(client) {
 	return onPhoneMessage;
 }
 
-//подписываемся на событие соединения нового клиента
+//ГЇГ®Г¤ГЇГЁГ±Г»ГўГ ГҐГ¬Г±Гї Г­Г  Г±Г®ГЎГ»ГІГЁГҐ Г±Г®ГҐГ¤ГЁГ­ГҐГ­ГЁГї Г­Г®ГўГ®ГЈГ® ГЄГ«ГЁГҐГ­ГІГ 
 io.sockets.on('connection', function (client) {
-    //подписываемся на событие message от клиента
+    //ГЇГ®Г¤ГЇГЁГ±Г»ГўГ ГҐГ¬Г±Гї Г­Г  Г±Г®ГЎГ»ГІГЁГҐ message Г®ГІ ГЄГ«ГЁГҐГ­ГІГ 
     client.on('message', function (message) {
         try {
 			//console.log('some client connected');
