@@ -56,11 +56,11 @@ function createOnPhoneMessageListener(client) {
 		try {
 			console.log('message ' + message.time.toString() + ' ' + message.move.toString() + ' was sent to ' + client);
 			switch (message.move){
-				case 1: mMovement = 'up'; break;
-				case 2: mMovement = 'down'; break;
+				case 1: mMovement = 'UP'; break;
+				case 2: mMovement = 'DOWN'; break;
 				case 3: mMovement = 'START'; break;
 				case 4: mMovement = 'STOP'; break;
-				case 5: mMovement = 'pass'; break;
+				case 5: mMovement = 'PASS'; break;
 			}
 			client.json.send({time:message.time, movement:mMovement});
 		} catch (e) {
