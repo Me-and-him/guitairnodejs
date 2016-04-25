@@ -6,7 +6,7 @@
 	<title>GuitAir</title>
 	<link rel="stylesheet" href="css/main.css">
 	<script>
-		var code = '1337';
+		var code = {{ page_code }};
 	</script>
 	<script src="libs/fabric.js/dist/fabric.min.js"></script>
 	<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
@@ -25,7 +25,7 @@
 		<div class="popup">
 			<!-- <i class="close-btn fa fa-close"></i> -->
 			<strong>Ваш код</strong><br />
-			<span id="code-container"></span>
+			<span id="code-container">{{ page_code }}</span>
 		</div>
 
 		<div class="score">

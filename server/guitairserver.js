@@ -11,14 +11,28 @@ var app = express();
 var http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io').listen(server, options);
-server.listen(PORT);
+
 var swig = require('swig');
 var jumanji = require('jumanji');
 var DEBUG_CODE_1 = '1234'
 var DEBUG_CODE_2 = '1488'
 pagelist[DEBUG_CODE_1] = undefined
 pagelist[DEBUG_CODE_2] = undefined
- 
+
+//Setup swig renderer
+//app.engine('html', swig.renderFile);
+//app.set('view engine', 'html');
+//app.set('views', __dirname + '/public');
+
+//Routing page
+app.get('/', function (req, res) {
+	console.log('proceeding pagerequest...');
+	var code = getuniqcode();
+	
+	//var tmp = swig.compileFile(__dirname + '/public/index.html');
+	res.status(200).send(swig.renderFile(__dirname + '/public/index.html', {page_code : code}));
+});
+
 app.use('/static', express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/public'));
 app.use(jumanji);
@@ -35,19 +49,7 @@ function getuniqcode() {
 	return code;
 }
 
-app.get('/', function (req, res) {
-	console.log('proceeding pagerequest...');
-	var page_code = getuniqcode();
-	
-	//res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-	//res.header('Expires', '-1');
-	//res.header('Pragma', 'no-cache');
-	//next();
-	
-	var tmp = swig.compileFile(__dirname + '/public/index.html');
-	res.send(tmp.render({code: page_code}));
-    //res.sendfile(__dirname + '/index.html');
-});
+
 
 function createOnPhoneMessageListener(client) {
 	function onPhoneMessage(message) {
@@ -69,9 +71,7 @@ function createOnPhoneMessageListener(client) {
 	return onPhoneMessage;
 }
 
-//ïîäïèñûâàåìñÿ íà ñîáûòèå ñîåäèíåíèÿ íîâîãî êëèåíòà
 io.sockets.on('connection', function (client) {
-    //ïîäïèñûâàåìñÿ íà ñîáûòèå message îò êëèåíòà
     client.on('message', function (message) {
         try {
 			//console.log('some client connected');
@@ -103,3 +103,5 @@ io.sockets.on('connection', function (client) {
 		}
 	});
 });
+server.listen(PORT);
+console.log('GuitairServer started on ',PORT);
