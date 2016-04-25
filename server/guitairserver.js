@@ -94,11 +94,13 @@ io.sockets.on('connection', function (client) {
             client.disconnect();
         }
     });
-	client.on('disconnect', function (client) {
+	client.on('disconnect', function () {
+		client.disconnected = true;
 		for(var key in pagelist){
 			if (pagelist.key == client){
-				console.log('webpage with code ' + message.code + ' registered');
+				console.log('webpage with code ' + message.code + ' unregistered');
 				delete pagelist.key;
+				break;
 			}
 		}
 	});
