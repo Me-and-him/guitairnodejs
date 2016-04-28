@@ -14,15 +14,18 @@ var io = require('socket.io').listen(server, options);
 
 var swig = require('swig');
 var jumanji = require('jumanji');
+/*
 var DEBUG_CODE_1 = '1234'
 var DEBUG_CODE_2 = '1488'
 pagelist[DEBUG_CODE_1] = undefined
 pagelist[DEBUG_CODE_2] = undefined
-
-//Setup swig renderer
-//app.engine('html', swig.renderFile);
-//app.set('view engine', 'html');
-//app.set('views', __dirname + '/public');
+*/
+/*
+var stdin = process.openStdin(); //console listener
+stdin.addListener("data", function(d) {
+	console.log("list flushed");
+}
+*/
 
 //Routing page
 app.get('/', function (req, res) {

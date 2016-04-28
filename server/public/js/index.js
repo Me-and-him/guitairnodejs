@@ -9,6 +9,19 @@
  *
  *  MIT License
  */
+ 
+ /*
+ *
+ *
+ *	SYKA BLYAT, YOBA, PEREDELAI ETO:
+ *	config.beginningOffset not calculating and not used properly
+ *	config.minInterval given in miliseconds, while config.lastPerformedAction.time is in microseconds and Date.now() returns unrecognizable bullshit
+ *	function that validates users input must start with eighth-note outrun
+ *	????????
+ *	PROFIT!
+ *
+ *
+ */
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -286,11 +299,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // * addMovementOnCanvas(movementInfo) -- add new movement canvas-object
 // * animateMovement(object) -- make recieved already added movement run (animate)
 // * onAgSetupEvent(event) -- handler for event, fired when game settings are recieved
-//
-// To remove
-//
-// * start() -- start game
-// * nextBeat(isFirst) -- process (and add) next movement
 //
 // Initialization
 //
@@ -663,7 +671,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						var valid = config.lastPerformedAction.movement == config.movements[index] && Math.abs(config.lastPerformedAction.time - Date.now()) < config.minInterval;
 
 						// GOVNOKOD
-						console.log('1: ' + config.lastPerformedAction.movement + '\n2: ' + config.movements[index] + '\nvalid: ' + valid);
+						console.log('1: ' + config.lastPerformedAction.movement + ' ' + config.lastPerformedAction.time + '\n2: ' + config.movements[index] + ' ' + Date.now() + '\nvalid: ' + valid + ' min interval: ' + config.minInterval);
 						// console.log();
 
 						if (valid) {

@@ -31,7 +31,7 @@
 	// config.currentBpm = event.detail.bpm;
 	config.currentBpm = 128;
 	config.currentMinInterval = (config.currentBpm * 1000) / (60 * 16);
-	config.currentBeginningOffset = event.detail.offset;
+	config.currentBeginningOffset = event.detail.offset + currentMinInterval / 2;
 
 	// Test
 	// addMovementOnCanvas(config.currentMovements[1]);
